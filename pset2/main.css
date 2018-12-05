@@ -21,3 +21,14 @@ body {
 .row:hover {
   background-color: #383838;
 }
+
+.search{
+  background-color: rgb(116, 112, 112);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 50%;
+  box-shadow: 2px 2px #5e5d5d36;
+}
+
+

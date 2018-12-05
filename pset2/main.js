@@ -1,8 +1,7 @@
 const playlist = {
   name: 'United States Top 10',
   description: 'The top songs in the US right now.',
-  songs: [
-    {
+  songs: [{
       name: 'thank u, next',
       artists: ['Ariana Grande'],
       image: 'https://i.scdn.co/image/3492042deca1ed9a02e6d46ebe58807bbf8d2a51'
@@ -69,3 +68,66 @@ const playlist = {
     }
   ]
 };
+
+// const h1 = document.querySelector('.diplay-4')
+// h1[0] = playlist.name
+// console.dir('h1')
+
+const objectToHTML = (song) => {
+  return `<div class='col-1'>
+  <img src="${song.image}" class="rounded" style='width: 50px; height: 50px;'>
+</div>
+<div class='col-11'>
+  <p class='mb-0 mt-1 song-name'>${song.name}</p>
+  <p class='my-0 song-artists'>${song.artists}</p>
+</div>`;
+}
+
+const render = () => {
+
+  const title = document.querySelector('h1');
+  title.innerText = playlist.name
+
+  const dsc = document.querySelector('.lead')
+  dsc.innerText = playlist.description
+
+  const song_list = document.querySelector('.song-list')
+
+  let combinedHTML = '';
+  for (let i = 0; i < playlist.songs.length; i++) {
+    combinedHTML += objectToHTML(playlist.songs[i]);
+  }
+
+  song_list.innerHTML = combinedHTML;
+  // console.log(combinedHTML);
+
+}
+
+render();
+
+// 1. create a variable and store search 
+
+const search = document.querySelector('.search');
+
+// console.log(search.value);// Have access to what is in the search bar
+
+// connect search to object
+
+
+search.addEventListener('input', function (e) {
+  console.log(e.data)
+  console.log(`e.target.value ${e.target.value}`)
+  console.log(`playlist.songs.name ${playlist.songs[0].name}`)
+  let newStr = ''
+  for (let i = 0; i < playlist.songs.length; i++) {
+    if (playlist.songs[i].name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1) { // compare what the user types in to the list of song names 
+      newStr += objectToHTML(playlist.songs[i])
+    } 
+
+  }
+
+  const song_list = document.querySelector('.song-list')
+
+  song_list.innerHTML = newStr
+
+});
